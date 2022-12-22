@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <title>Seminarios</title>
+</head>
+
+<body>
+
+  <body class="container mt-1">
+    <div class="p-5 mb-4 bg-dark rounded-3 text-center">
+      <div class="container-fluid">
+        <h1 class="display-2 fw-bold text-warning">Listado de Registros</h1>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <table class="table table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Teléfono</th>
+          <th>Fecha de inscripción</th>
+          <th>Institución</th>
+          <th>Hora de inscripción</th>
+          <th>Estado</th>
+          <th>Observación</th>
+          <th>--</th>
+          <th>--</th>
+        </tr>
+        {% for registro in registros %}
+        <tr>
+          <td>{{ registro.id }}</td>
+          <td>{{ registro.nombre }}</td>
+          <td>{{ registro.telefono }}</td>
+          <td>{{ registro.fecha_inscripcion|date:"j N Y" }}</td>
+          <td>{{ registro.institucion}}</td>
+          <td>{{ registro.hora_inscripcion }}</td>
+          <td>{{ registro.estado }}</td>
+          <td>{{ registro.observacion }}</td>
+          <td><a href="/actualizar/{{registro.id}}" class="btn btn-warning btn-sm">Editar<i class="bi bi-pencil"></i>
+          </td>
+          <td><a href="/eliminar/{{registro.id}}" class="btn btn-danger btn-sm">Eliminar<i class="bi bi-trash"></i></td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <a href="{% url 'agregarregistro' %}" class="btn btn-info float-end">Agregar Registro</a>
+      <a href="../" class="btn btn-secondary">Volver</a>
+    </div>
+  </body>
